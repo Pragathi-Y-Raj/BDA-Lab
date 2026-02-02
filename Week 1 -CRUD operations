@@ -78,7 +78,9 @@ WHERE c.name = 'Amit Sharma';
 #Update
 UPDATE customers
 SET income = 850000.00
-WHERE name = 'Amit Sharma';
+WHERE customer_id = 1;
+select * from customers
+
 
 #Delete
 DELETE FROM transactions
