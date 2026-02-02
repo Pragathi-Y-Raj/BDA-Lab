@@ -1,3 +1,4 @@
+SQL
 CREATE DATABASE banking_finance;
 USE banking_finance;
 
@@ -85,6 +86,57 @@ select * from customers
 #Delete
 DELETE FROM transactions
 WHERE customer_id = 5;
+
+
+MongoDB
+use banking_finance
+
+***CRUD operations***
+
+#CREATE (Insert Data)
+db.customers.insertMany([
+  { _id: 1, name: "Amit Sharma", age: 35, income: 800000, account_type: "Savings", city: "Delhi" },
+  { _id: 2, name: "Riya Singh", age: 28, income: 550000, account_type: "Current", city: "Mumbai" },
+  { _id: 3, name: "Karan Kumar", age: 42, income: 1200000, account_type: "Savings", city: "Bengaluru" },
+  { _id: 4, name: "Sneha Gupta", age: 30, income: 750000, account_type: "Savings", city: "Chennai" },
+  { _id: 5, name: "Vikram Patel", age: 38, income: 900000, account_type: "Current", city: "Hyderabad" },
+  { _id: 6, name: "Neha Verma", age: 27, income: 600000, account_type: "Savings", city: "Pune" }
+])
+
+db.transactions.insertMany([
+  { customer_id: 1, transaction_date: new Date("2026-02-01"), amount: 12000.50, transaction_type: "Debit", status: "Success" },
+  { customer_id: 2, transaction_date: new Date("2026-01-20"), amount: 50000.00, transaction_type: "Credit", status: "Success" },
+  { customer_id: 3, transaction_date: new Date("2026-02-03"), amount: 15000.00, transaction_type: "Debit", status: "Failed" },
+  { customer_id: 4, transaction_date: new Date("2026-02-05"), amount: 250000.00, transaction_type: "Debit", status: "Success" },
+  { customer_id: 5, transaction_date: new Date("2026-01-10"), amount: 10000.00, transaction_type: "Debit", status: "Success" },
+  { customer_id: 6, transaction_date: new Date("2026-02-06"), amount: 18000.00, transaction_type: "Debit", status: "Success" }
+])
+
+db.credit_history.insertMany([
+  { customer_id: 1, credit_score: 720, loan_amount: 500000, emi_amount: 25000, payment_status: "Paid" },
+  { customer_id: 2, credit_score: 680, loan_amount: 300000, emi_amount: 20000, payment_status: "Paid" },
+  { customer_id: 3, credit_score: 550, loan_amount: 700000, emi_amount: 40000, payment_status: "Missed" },
+  { customer_id: 4, credit_score: 750, loan_amount: 1000000, emi_amount: 50000, payment_status: "Paid" },
+  { customer_id: 5, credit_score: 690, loan_amount: 400000, emi_amount: 22000, payment_status: "Paid" },
+  { customer_id: 6, credit_score: 710, loan_amount: 450000, emi_amount: 23000, payment_status: "Paid" }
+])
+
+#READ (Retrieve Data)
+db.customers.find()
+
+db.transactions.find({ customer_id: 1 })
+
+#UPDATE (Modify Data)
+db.customers.updateOne(
+  { _id: 1 },
+  { $set: { income: 850000 } }
+)
+
+#DELETE (Remove Data)
+
+db.customers.deleteOne({ _id: 5 })
+
+
 
 
 
